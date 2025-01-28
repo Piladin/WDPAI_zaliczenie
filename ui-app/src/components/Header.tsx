@@ -32,7 +32,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/ads" className="nav-link">
+            <Link to="/announcements" className="nav-link">
               <img src={genericIcon} alt="Ogłoszenia" className="nav-icon" style={{ cursor: 'pointer', width: '48px', height: '48px' }}/>
               <br />
               Ogłoszenia

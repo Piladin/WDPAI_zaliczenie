@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
+import Add from "./components/Add";
+import Announcements from "./components/Announcements";
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/announcements" element={<Announcements />} />
         </Routes>
       </div>
     </BrowserRouter>

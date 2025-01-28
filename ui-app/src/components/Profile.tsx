@@ -5,8 +5,8 @@ import './Profile.css';
 const Profile = () => {
     const [userData, setUserData] = useState({
         email: '',
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         phone: ''
     });
     const [isEditing, setIsEditing] = useState(false);
@@ -22,8 +22,8 @@ const Profile = () => {
                 });
                 setUserData({
                     email: response.data.email,
-                    firstName: response.data.first_name,
-                    lastName: response.data.last_name,
+                    first_name: response.data.first_name,
+                    last_name: response.data.last_name,
                     phone: response.data.phone_number
                 });
             } catch (error) {
@@ -64,14 +64,14 @@ const Profile = () => {
                 </div>
                 <div className="form-group">
                     <label>First Name</label>
-                    <input type="text" value={userData.firstName} 
-                        onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+                    <input type="text" value={userData.first_name} 
+                        onChange={(e) => setUserData({ ...userData, first_name: e.target.value })}
                         disabled={!isEditing} className="form-input" />
                 </div>
                 <div className="form-group">
                     <label>Last Name</label>
-                    <input type="text" value={userData.lastName} 
-                        onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+                    <input type="text" value={userData.last_name} 
+                        onChange={(e) => setUserData({ ...userData, last_name: e.target.value })}
                         disabled={!isEditing} className="form-input" />
                 </div>
                 <div className="form-group">
