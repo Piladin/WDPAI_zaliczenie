@@ -32,18 +32,10 @@ const Announcements = () => {
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
 
-    /** Pobiera token z sessionStorage */
-    const getAuthHeaders = () => {
-        const token = sessionStorage.getItem("access_token");
-        return token ? { Authorization: `Bearer ${token}` } : {};
-    };
-
     /** Pobiera listę ogłoszeń */
     const fetchAnnouncements = async () => {
         try {
             const response = await axios.get('http://localhost:8000/api/announcements/', {
-                headers: getAuthHeaders(),
-                withCredentials: true
             });
             setAnnouncements(response.data);
         } catch (error) {
@@ -53,10 +45,13 @@ const Announcements = () => {
 
     /** Pobiera dane zalogowanego użytkownika */
     const fetchUser = async () => {
+        const token = sessionStorage.getItem('access_token');
+        if (!token) {
+            return;
+        }
         try {
             const response = await axios.get('http://localhost:8000/api/user/me/', {
-                headers: getAuthHeaders(),
-                withCredentials: true
+                headers: { Authorization: `Bearer ${token}` }
             });
             setUser(response.data);
         } catch {
@@ -67,10 +62,13 @@ const Announcements = () => {
     /** Usuwa ogłoszenie */
     const handleDelete = async (id: number) => {
         if (!window.confirm("Czy na pewno chcesz usunąć to ogłoszenie?")) return;
+        const token = sessionStorage.getItem('access_token');
+        if (!token) {
+            return;
+        }
         try {
             await axios.delete(`http://localhost:8000/api/announcements/delete/${id}/`, {
-                headers: getAuthHeaders(),
-                withCredentials: true
+                headers: { Authorization: `Bearer ${token}` }
             });
             setAnnouncements(announcements.filter(a => a.id !== id));
         } catch (error) {
