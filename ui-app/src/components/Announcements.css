@@ -1,6 +1,7 @@
 .announcements-container {
     text-align: center;
-    padding: 20px;
+    padding: 300px 20px 20px;
+    position: relative; 
 }
 
 .add-button {
@@ -8,21 +9,22 @@
     color: white;
     border: none;
     padding: 10px 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     margin-top: 20px;
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
-    align-self:  start center;
+    position: absolute;
+    margin-right: 30%;
 }
 
 .announcements-grid {
-    margin-top: 300px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 100px;
     justify-content: center;
     align-items: center;
+    padding-top: 80px;
 }
 
 .announcement-card {
