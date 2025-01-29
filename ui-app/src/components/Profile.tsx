@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Profile.css';
+import avatar from '../assets/avatar.png';
 
 const Profile = () => {
     const [userData, setUserData] = useState({
@@ -55,7 +56,7 @@ const Profile = () => {
     return (
         <div className="profile-container">
             <div className="profile-avatar">
-                <img src="/assets/avatar.png" alt="User Avatar" className="avatar-image" />
+                <img src={avatar} alt="User Avatar" className="avatar-image" />
             </div>
             <form className="profile-form">
                 <div className="form-group">

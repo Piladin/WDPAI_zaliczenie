@@ -5,7 +5,7 @@ class SystemUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SystemUser
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'phone_number']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'phone_number', 'is_staff']
         
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)

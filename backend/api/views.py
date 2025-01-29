@@ -133,3 +133,14 @@ def get_current_user(request):
     user = request.user
     serializer = SystemUserSerializer(user)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_announcement(request, pk):
+    try:
+        announcement = get_object_or_404(Announcement, pk=pk)
+        serializer = AnnouncementSerializer(announcement)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        print("Error fetching announcement:", str(e))  # Debug print
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

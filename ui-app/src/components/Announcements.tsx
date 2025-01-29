@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Announcements.css';
+import avatar from '../assets/avatar.png';
 
 const Announcements = () => {
     interface Announcement {
@@ -26,13 +27,12 @@ const Announcements = () => {
         last_name: string;
         email: string;
         phone_number?: string;
-        is_admin: boolean;
+        is_staff: boolean;
     }
 
     const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
 
-    /** Pobiera listę ogłoszeń */
     const fetchAnnouncements = async () => {
         try {
             const response = await axios.get('http://localhost:8000/api/announcements/', {
@@ -43,7 +43,6 @@ const Announcements = () => {
         }
     };
 
-    /** Pobiera dane zalogowanego użytkownika */
     const fetchUser = async () => {
         const token = sessionStorage.getItem('access_token');
         if (!token) {
@@ -59,7 +58,6 @@ const Announcements = () => {
         }
     };
 
-    /** Usuwa ogłoszenie */
     const handleDelete = async (id: number) => {
         if (!window.confirm("Czy na pewno chcesz usunąć to ogłoszenie?")) return;
         const token = sessionStorage.getItem('access_token');
@@ -99,12 +97,12 @@ const Announcements = () => {
                             </div>
                         </div>
                         <div className="right-section">
-                            <img className="avatar" src="https://via.placeholder.com/50" alt="User Avatar" />
+                            <img className="avatar" src={avatar} alt="User Avatar" />
                             <p className="author-name">{announcement.author.first_name} {announcement.author.last_name}</p>
                             <p className="email">{announcement.author.email}</p>
                             {announcement.author.phone_number && <p className="phone">{announcement.author.phone_number}</p>}
 
-                            {(user && (user.id === announcement.author.id || user.is_admin)) && (
+                            {(user && (user.id === announcement.author.id || user.is_staff)) && (
                                 <div className="admin-actions">
                                     <button className="edit-button" onClick={() => navigate(`/edit/${announcement.id}`)}>✏️</button>
                                     <button className="delete-button" onClick={() => handleDelete(announcement.id)}>🗑️</button>

@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Add from "./components/Add";
 import Announcements from "./components/Announcements";
+import EditAnnouncement from "./components/EditAnnouncement";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/add" element={<Add />} />
           <Route path="/announcements" element={<Announcements />} />
+          <Route path="/edit/:id" element={<EditAnnouncement />} /> {/* Nowa trasa */}
         </Routes>
       </div>
     </BrowserRouter>
