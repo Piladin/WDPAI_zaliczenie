@@ -81,7 +81,7 @@ const Profile = () => {
                         onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
                         disabled={!isEditing} className="form-input" />
                 </div>
-                <button type="button" className="edit-button" 
+                <button type="button" className="edit-button-1" 
                     onClick={() => isEditing ? handleEdit() : setIsEditing(true)}>
                     {isEditing ? 'Save Changes' : 'Edit profile'}
                 </button>
