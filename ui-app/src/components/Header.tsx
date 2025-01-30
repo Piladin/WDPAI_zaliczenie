@@ -11,7 +11,7 @@ const handleLogout = () => {
     window.location.href = '/login';
 };
 
-
+const isLoggedIn = !!sessionStorage.getItem('access_token');
 
 const Header = () => {
     return (
@@ -25,18 +25,11 @@ const Header = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/profile" className="nav-link">
-              <img src={genericIcon} alt="Profile" className="nav-icon" style={{ cursor: 'pointer', width: '48px', height: '48px' }}/>
-              <br />
-              Profil
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/announcements" className="nav-link">
-              <img src={genericIcon} alt="Ogłoszenia" className="nav-icon" style={{ cursor: 'pointer', width: '48px', height: '48px' }}/>
-              <br />
-              Ogłoszenia
-            </Link>
+          <Link to={isLoggedIn ? "/profile" : "/login"} className="nav-link">
+            <img src={genericIcon} alt="Profile" className="nav-icon" style={{ cursor: 'pointer', width: '48px', height: '48px' }} />
+            <br />
+            Profil
+          </Link>
           </li>
           <li>
           <img
